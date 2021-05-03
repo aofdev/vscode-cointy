@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
 import fetcher from "../utils/fetcher";
-import formatCurrency from "../utils/formatter";
+import * as formatter from "../utils/formatter";
 import { ResponseCoinMarketCapItem } from "../entities/response";
 export class CoinMarketCapProvider
   implements vscode.TreeDataProvider<CoinItem> {
@@ -70,7 +70,7 @@ export class CoinMarketCapProvider
     return new CoinItem(
       `${coin.name} (${coin.symbol})`,
       this.setIconPathPriceChange(coin.quote.USD.percent_change_24h),
-      formatCurrency(coin.quote.USD.price),
+      formatter.formatCurrency(coin.quote.USD.price),
       this.setCoinDetail(coin)
     );
   }
@@ -80,22 +80,26 @@ export class CoinMarketCapProvider
       new CoinItem(
         "Price Change(24h):",
         this.setIconPathPriceChange(coin.quote.USD.percent_change_24h),
-        `${coin.quote.USD.percent_change_24h}%`
+        `${formatter.formatDecimalTwoPrecision(
+          coin.quote.USD.percent_change_24h
+        )}%`
       ),
       new CoinItem(
         "Price Change(7d):",
         this.setIconPathPriceChange(coin.quote.USD.percent_change_7d),
-        `${coin.quote.USD.percent_change_7d}%`
+        `${formatter.formatDecimalTwoPrecision(
+          coin.quote.USD.percent_change_7d
+        )}%`
       ),
       new CoinItem(
         `Volume(24h):`,
         path.join(__filename, "..", "..", "..", "resources", "volume.svg"),
-        formatCurrency(coin.quote.USD.volume_24h)
+        formatter.formatCurrency(coin.quote.USD.volume_24h)
       ),
       new CoinItem(
         `Market Cap:`,
         path.join(__filename, "..", "..", "..", "resources", "market.svg"),
-        formatCurrency(coin.quote.USD.market_cap)
+        formatter.formatCurrency(coin.quote.USD.market_cap)
       ),
     ];
   }

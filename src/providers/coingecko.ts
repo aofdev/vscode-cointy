@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
 import fetcher from "../utils/fetcher";
-import formatCurrency from "../utils/formatter";
+import * as formatter from "../utils/formatter";
 import { ResponseCoinGeckoItem } from "../entities/response";
 
 export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
@@ -32,7 +32,7 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
     return new CoinItem(
       `${coin.name} (${coin.symbol.toUpperCase()})`,
       vscode.Uri.parse(coin.image),
-      formatCurrency(coin.current_price),
+      formatter.formatCurrency(coin.current_price),
       this.setCoinDetail(coin)
     );
   }
@@ -42,22 +42,26 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
       new CoinItem(
         "Price Change(24h):",
         this.setIconPathPriceChange(coin.price_change_percentage_24h),
-        `${coin.price_change_percentage_24h}%`
+        `${formatter.formatDecimalTwoPrecision(
+          coin.price_change_percentage_24h
+        )}%`
       ),
       new CoinItem(
         "Market Cap Change(24h):",
         this.setIconPathPriceChange(coin.market_cap_change_percentage_24h),
-        `${coin.market_cap_change_percentage_24h}%`
+        `${formatter.formatDecimalTwoPrecision(
+          coin.market_cap_change_percentage_24h
+        )}%`
       ),
       new CoinItem(
         `Volume(24h):`,
         path.join(__filename, "..", "..", "..", "resources", "volume.svg"),
-        formatCurrency(coin.total_volume)
+        formatter.formatCurrency(coin.total_volume)
       ),
       new CoinItem(
         `Market Cap:`,
         path.join(__filename, "..", "..", "..", "resources", "market.svg"),
-        formatCurrency(coin.market_cap)
+        formatter.formatCurrency(coin.market_cap)
       ),
     ];
   }
