@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
+import * as path from "path";
 import fetcher from "../utils/fetcher";
 import formatCurrency from "../utils/formatter";
 import { ResponseCoinMarketCapItem } from "../entities/response";
-
 export class CoinMarketCapProvider
   implements vscode.TreeDataProvider<CoinItem> {
   private _onDidChangeTreeData: vscode.EventEmitter<
@@ -90,19 +90,21 @@ export class CoinMarketCapProvider
       ),
       new CoinItem(
         `Volume(24h):`,
-        "./resources/volume.svg",
+        path.join(__filename, "..", "..", "resources", "volume.svg"),
         formatCurrency(coin.quote.USD.volume_24h)
       ),
       new CoinItem(
         `Market Cap:`,
-        "./resources/market.svg",
+        path.join(__filename, "..", "..", "resources", "market.svg"),
         formatCurrency(coin.quote.USD.market_cap)
       ),
     ];
   }
 
   setIconPathPriceChange(price: number): string {
-    return price >= 0 ? "./resources/up.svg" : "./resources/down.svg";
+    return price >= 0
+      ? path.join(__filename, "..", "..", "resources", "up.svg")
+      : path.join(__filename, "..", "..", "resources", "down.svg");
   }
 
   getTreeItem(element: CoinItem): vscode.TreeItem | Thenable<vscode.TreeItem> {

@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import * as path from "path";
 import fetcher from "../utils/fetcher";
 import formatCurrency from "../utils/formatter";
 import { ResponseCoinGeckoItem } from "../entities/response";
@@ -50,19 +51,21 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
       ),
       new CoinItem(
         `Volume(24h):`,
-        "../resources/volume.svg",
+        path.join(__filename, "..", "..", "resources", "volume.svg"),
         formatCurrency(coin.total_volume)
       ),
       new CoinItem(
         `Market Cap:`,
-        "../resources/market.svg",
+        path.join(__filename, "..", "..", "resources", "market.svg"),
         formatCurrency(coin.market_cap)
       ),
     ];
   }
 
   setIconPathPriceChange(price: number): string {
-    return price >= 0 ? "../resources/up.svg" : "../resources/down.svg";
+    return price >= 0
+      ? path.join(__filename, "..", "..", "resources", "up.svg")
+      : path.join(__filename, "..", "..", "resources", "down.svg");
   }
 
   getTreeItem(element: CoinItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
