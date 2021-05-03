@@ -15,6 +15,21 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsWelcome": [
+      {
+        "view": "coinMarketCapTreeView",
+        "contents": "Not found apiKey [learn more](https://pro.coinmarketcap.com/).\n[Open Settings](command:workbench.action.openSettings)",
+        "when": "config.cointy.apiKey == ''"
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "cointy.apiKey": {
+          "type": "string",
+          "description": "Your CoinMarketCap API key."
+        }
+      }
+    },
     "viewsContainers": {
       "activitybar": [
         {
