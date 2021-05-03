@@ -1,14 +1,19 @@
 {
   "name": "cointy",
-  "displayName": "cointy",
-  "description": "Live Cryptocurrency Prices",
-  "version": "0.0.1",
+  "displayName": "Cointy",
+  "description": "Welcome to Cointy, a Visual Studio Code extension for checks cryptocurrency prices as you code.",
+  "version": "1.0.0",
+  "icon": "resources/cryptocurrency-color-logo.png",
   "engines": {
     "vscode": "^1.55.0"
   },
   "categories": [
     "Other"
   ],
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/aofdev/vscode-cointy"
+	},
   "activationEvents": [
     "onView:coinGeckoTreeView",
     "onView:coinMarketCapTreeView"
