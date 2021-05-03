@@ -20,11 +20,11 @@ export class CoinMarketCapProvider
   constructor() {
     this.apiKey = vscode.workspace
       .getConfiguration(this.extensionID)
-      .get("apiKey");
+      .get("coinmarketcap.apiKey");
     vscode.workspace.onDidChangeConfiguration(() => {
       this.apiKey = vscode.workspace
         .getConfiguration(this.extensionID)
-        .get("apiKey");
+        .get("coinmarketcap.apiKey");
     });
     console.log(this.apiKey);
     if (typeof this.apiKey === "undefined" || this.apiKey === "") {

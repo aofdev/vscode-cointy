@@ -18,13 +18,13 @@
     "viewsWelcome": [
       {
         "view": "coinMarketCapTreeView",
-        "contents": "Not found apiKey [learn more](https://pro.coinmarketcap.com/).\n[Open Settings](command:workbench.action.openSettings)",
-        "when": "config.cointy.apiKey == ''"
+        "contents": "Not found apiKey CoinMarketCap [learn more](https://pro.coinmarketcap.com/).\n[Open Settings](command:workbench.action.openSettings)",
+        "when": "config.cointy.coinmarketcap.apiKey == ''"
       }
     ],
     "configuration": {
       "properties": {
-        "cointy.apiKey": {
+        "cointy.coinmarketcap.apiKey": {
           "type": "string",
           "description": "Your CoinMarketCap API key."
         }
