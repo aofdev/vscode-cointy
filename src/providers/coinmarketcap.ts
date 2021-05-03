@@ -52,6 +52,7 @@ export class CoinMarketCapProvider
         url:
           "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=100&convert=USD",
         headers: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           "X-CMC_PRO_API_KEY": this.apiKey,
         },
       });
