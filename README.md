@@ -1,70 +1,42 @@
-# cointy README
+<p align="center">
+  <img alt="vscode logo" src="resources/cryptocurrency-color-logo.svg" width="200px" />
+  <h1 align="center">Cointy</h1>
+</p>
 
-This is the README for your extension "cointy". After writing up a brief description, we recommend including the following sections.
+Welcome to Cointy, a Visual Studio Code extension for checks cryptocurrency prices as you code.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Top 100 Crypto Coins by Market Capitalization.
+- Using [CoinGecko](https://www.coingecko.com/) and [CoinMarketCap](https://coinmarketcap.com/) to retrieve the current cryptocurrency prices.
 
-For example if there is an image subfolder under your extension project workspace:
+## Customization
 
-\!\[feature X\]\(images/feature-x.png\)
+You can customize using CoinMarketCap API for the cointy extension settings.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+```json
+// Specify your CoinMarketCap API key
+"cointy.coinmarketcap.apiKey": "YOUR_API_KEY"
+```
 
-## Requirements
+## How to run locally
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Open VS Code 
+2. `npm install` installation packages
+3. `npm run watch` interactive watch mode to automatically transpile source files
+4. `F5` to start debugging
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Contributing
 
-For example:
+This project welcomes contributions and suggestions. Please go through the [Contributing Guide](https://github.com/aofdev/vscode-cointy/blob/min/docs/contributing.md) in the new repository.
 
-This extension contributes the following settings:
+## Icons
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+- Icon main made by [eucalyp](https://www.flaticon.com/authors/eucalyp) from www.flaticon.com
+- Icon market made by [flat-icons](https://www.flaticon.com/authors/flat-icons) from www.flaticon.com
+- Icon volume made by [freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com
+- Icons up and down made by [dave-gandy](https://www.flaticon.com/authors/dave-gandy) from www.flaticon.com
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## License
+[MIT](LICENSE)
