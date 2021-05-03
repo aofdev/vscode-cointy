@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import fetcher from "../utils/fetcher";
 import formatCurrency from "../utils/formatter";
+import { ResponseCoinGeckoItem } from "../entities/response";
 
 export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
   private _onDidChangeTreeData: vscode.EventEmitter<
@@ -9,20 +10,24 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
   readonly onDidChangeTreeData: vscode.Event<
     CoinItem | undefined | null | void
   > = this._onDidChangeTreeData.event;
+  private extensionName: string = "Cointy";
 
   async getCoins(): Promise<CoinItem[]> {
     try {
-      const response = await fetcher(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-      );
-      return response.map((coin: any) => this.setCoin(coin));
+      const response = await fetcher({
+        url:
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+      });
+      return response.map((coin: ResponseCoinGeckoItem) => this.setCoin(coin));
     } catch (err) {
-      vscode.window.showInformationMessage(err);
+      vscode.window.showErrorMessage(
+        `${this.extensionName}: Error fetching coingecko`
+      );
     }
     return [];
   }
 
-  setCoin(coin: any): CoinItem {
+  setCoin(coin: ResponseCoinGeckoItem): CoinItem {
     return new CoinItem(
       `${coin.name} (${coin.symbol.toUpperCase()})`,
       vscode.Uri.parse(coin.image),
@@ -31,7 +36,7 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
     );
   }
 
-  setCoinDetail(coin: any): CoinItem[] {
+  setCoinDetail(coin: ResponseCoinGeckoItem): CoinItem[] {
     return [
       new CoinItem(
         "Price Change(24h):",
@@ -45,20 +50,19 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
       ),
       new CoinItem(
         `Volume(24h):`,
-        "/Users/aofdev/dev/cointy/resources/volume.svg",
+        "../resources/volume.svg",
         formatCurrency(coin.total_volume)
       ),
       new CoinItem(
         `Market Cap:`,
-        "/Users/aofdev/dev/cointy/resources/market.svg",
+        "../resources/market.svg",
         formatCurrency(coin.market_cap)
       ),
     ];
   }
+
   setIconPathPriceChange(price: number): string {
-    return price >= 0
-      ? "/Users/aofdev/dev/cointy/resources/up.svg"
-      : "/Users/aofdev/dev/cointy/resources/down.svg";
+    return price >= 0 ? "../resources/up.svg" : "../resources/down.svg";
   }
 
   getTreeItem(element: CoinItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -96,7 +100,7 @@ class CoinItem extends vscode.TreeItem {
         : vscode.TreeItemCollapsibleState.Collapsed
     );
     this.children = children;
-    this.description = price;
     this.iconPath = iconPath;
+    this.description = price;
   }
 }
