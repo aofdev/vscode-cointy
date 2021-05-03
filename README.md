@@ -5,6 +5,10 @@
   
 [![Linter](https://github.com/aofdev/vscode-cointy/workflows/lint/badge.svg)](ttps://github.com/aofdev/vscode-cointy/workflows/lint)
 
+<p align="center">
+    <img src="demo-vscode-cointy.gif" alt="vscode-cointy">
+</p>
+
 Welcome to Cointy, a Visual Studio Code extension for checks cryptocurrency prices as you code.
 
 ## Features
