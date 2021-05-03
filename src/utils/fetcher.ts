@@ -1,8 +1,11 @@
 import { request } from "gaxios";
 
-export default async function fetcher(url: string): Promise<any> {
+export default async function fetcher(payload: {
+  url: string;
+  headers?: any;
+}): Promise<any> {
   try {
-    const res = await request({ url });
+    const res = await request(payload);
     if (res.status === 200 && res?.data) {
       return res.data;
     }
