@@ -26,8 +26,7 @@ export class CoinMarketCapProvider
         .getConfiguration(this.extensionID)
         .get("coinmarketcap.apiKey");
     });
-    console.log(this.apiKey);
-    if (typeof this.apiKey === "undefined" || this.apiKey === "") {
+    if (this.checkApiKey()) {
       vscode.window
         .showInformationMessage(
           `${this.extensionName}: Please enter your apiKey coinMarketCap`,
@@ -90,12 +89,12 @@ export class CoinMarketCapProvider
       ),
       new CoinItem(
         `Volume(24h):`,
-        path.join(__filename, "..", "..", "resources", "volume.svg"),
+        path.join(__filename, "..", "..", "..", "resources", "volume.svg"),
         formatCurrency(coin.quote.USD.volume_24h)
       ),
       new CoinItem(
         `Market Cap:`,
-        path.join(__filename, "..", "..", "resources", "market.svg"),
+        path.join(__filename, "..", "..", "..", "resources", "market.svg"),
         formatCurrency(coin.quote.USD.market_cap)
       ),
     ];
@@ -103,8 +102,8 @@ export class CoinMarketCapProvider
 
   setIconPathPriceChange(price: number): string {
     return price >= 0
-      ? path.join(__filename, "..", "..", "resources", "up.svg")
-      : path.join(__filename, "..", "..", "resources", "down.svg");
+      ? path.join(__filename, "..", "..", "..", "resources", "up.svg")
+      : path.join(__filename, "..", "..", "..", "resources", "down.svg");
   }
 
   getTreeItem(element: CoinItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -114,11 +113,17 @@ export class CoinMarketCapProvider
   getChildren(
     element?: CoinItem | undefined
   ): vscode.ProviderResult<CoinItem[]> {
-    if (element === undefined) {
+    if (this.checkApiKey()) {
+      return Promise.resolve([]);
+    } else if (element === undefined) {
       return Promise.resolve(this.getCoins());
     }
 
     return element.children;
+  }
+
+  checkApiKey(): boolean {
+    return typeof this.apiKey === "undefined" || this.apiKey === "";
   }
 
   refresh(): void {

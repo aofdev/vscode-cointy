@@ -51,12 +51,12 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
       ),
       new CoinItem(
         `Volume(24h):`,
-        path.join(__filename, "..", "..", "resources", "volume.svg"),
+        path.join(__filename, "..", "..", "..", "resources", "volume.svg"),
         formatCurrency(coin.total_volume)
       ),
       new CoinItem(
         `Market Cap:`,
-        path.join(__filename, "..", "..", "resources", "market.svg"),
+        path.join(__filename, "..", "..", "..", "resources", "market.svg"),
         formatCurrency(coin.market_cap)
       ),
     ];
@@ -64,8 +64,8 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
 
   setIconPathPriceChange(price: number): string {
     return price >= 0
-      ? path.join(__filename, "..", "..", "resources", "up.svg")
-      : path.join(__filename, "..", "..", "resources", "down.svg");
+      ? path.join(__filename, "..", "..", "..", "resources", "up.svg")
+      : path.join(__filename, "..", "..", "..", "resources", "down.svg");
   }
 
   getTreeItem(element: CoinItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
