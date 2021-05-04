@@ -21,12 +21,12 @@
     <img src="demo-vscode-cointy.gif" alt="vscode-cointy">
 </p>
 
-## Features
+## Features ✨
 
 - Top 100 Crypto Coins by Market Capitalization.
 - Using [CoinGecko](https://www.coingecko.com/) and [CoinMarketCap](https://coinmarketcap.com/) to retrieve the current cryptocurrency prices.
 
-## Customization
+## Customization 🎨
 
 You can customize using CoinMarketCap API for the cointy extension settings.
 
@@ -35,7 +35,7 @@ You can customize using CoinMarketCap API for the cointy extension settings.
 "cointy.coinmarketcap.apiKey": "YOUR_API_KEY"
 ```
 
-## How to run locally
+## How to run locally 🧑‍💻
 
 1. Open VS Code 
 2. `npm install` installation packages
@@ -43,7 +43,7 @@ You can customize using CoinMarketCap API for the cointy extension settings.
 4. `F5` to start debugging
 
 
-## Contributing
+## Contributing 📖
 
 This project welcomes contributions and suggestions. Please go through the [Contributing Guide](https://github.com/aofdev/vscode-cointy/blob/min/docs/contributing.md) in the new repository.
 
