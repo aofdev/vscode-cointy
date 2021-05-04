@@ -2,7 +2,8 @@
   "name": "cointy",
   "displayName": "Cointy",
   "description": "Welcome to Cointy, a vs code extension for checks cryptocurrency prices as you code.",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "publisher": "aofdev",
   "icon": "resources/cryptocurrency-color-logo.png",
   "engines": {
     "vscode": "^1.55.0"
@@ -23,7 +24,7 @@
     "viewsWelcome": [
       {
         "view": "coinMarketCapTreeView",
-        "contents": "Not found apiKey CoinMarketCap [learn more](https://pro.coinmarketcap.com/).\n[Open Settings](command:workbench.action.openSettings)",
+        "contents": "Not found API Key CoinMarketCap [learn more](https://pro.coinmarketcap.com/).\n[Open Settings](command:workbench.action.openSettings)",
         "when": "config.cointy.coinmarketcap.apiKey == ''"
       }
     ],
