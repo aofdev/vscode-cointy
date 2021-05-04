@@ -2,7 +2,7 @@
   "name": "cointy",
   "displayName": "Cointy",
   "description": "A check for cryptocurrency prices as you code.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "aofdev",
   "icon": "resources/cryptocurrency-color-logo.png",
   "engines": {
@@ -121,6 +121,7 @@
     "gaxios": "^4.2.1"
   },
   "release": {
+    "branches": "main",
     "verifyConditions": [
       "semantic-release-vsce",
       "@semantic-release/github"
