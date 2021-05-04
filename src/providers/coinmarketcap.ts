@@ -12,36 +12,31 @@ export class CoinMarketCapProvider
     CoinItem | undefined | null | void
   > = this._onDidChangeTreeData.event;
 
-  readonly extensionID: string = "cointy";
-  readonly extensionName: string = "Cointy";
+  private extensionName: string;
   private apiKey: string | undefined;
 
-  // get the apiKey definitions from the configuration
-  constructor() {
-    this.apiKey = vscode.workspace
-      .getConfiguration(this.extensionID)
-      .get("coinmarketcap.apiKey");
-    vscode.workspace.onDidChangeConfiguration(() => {
-      this.apiKey = vscode.workspace
-        .getConfiguration(this.extensionID)
-        .get("coinmarketcap.apiKey");
-    });
+  constructor(
+    extensionID: string,
+    extensionName: string,
+    apiKey: string | undefined
+  ) {
+    this.extensionName = extensionName;
+    this.apiKey = apiKey;
+
     if (this.checkApiKey()) {
       vscode.window
         .showInformationMessage(
-          `${this.extensionName}: Please enter your apiKey coinMarketCap`,
+          `${extensionName}: Please enter your CoinMarketCap API Key `,
           "Add API Key"
         )
         .then((selection) => {
           if (selection) {
             vscode.commands.executeCommand(
               "workbench.action.openSettings",
-              `@ext:${this.extensionID}`
+              `@ext:${extensionID}`
             );
           }
         });
-    } else {
-      this.refresh();
     }
   }
 
@@ -60,7 +55,7 @@ export class CoinMarketCapProvider
       );
     } catch (err) {
       vscode.window.showErrorMessage(
-        `${this.extensionName}: Error fetching coinmarketcap`
+        `${this.extensionName}: Error fetching CoinMarketCap API`
       );
     }
     return [];

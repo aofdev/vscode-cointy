@@ -11,7 +11,11 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
   readonly onDidChangeTreeData: vscode.Event<
     CoinItem | undefined | null | void
   > = this._onDidChangeTreeData.event;
-  readonly extensionName: string = "Cointy";
+  private extensionName: string;
+
+  constructor(extensionName: string) {
+    this.extensionName = extensionName;
+  }
 
   async getCoins(): Promise<CoinItem[]> {
     try {
@@ -22,7 +26,7 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
       return response.map((coin: ResponseCoinGeckoItem) => this.setCoin(coin));
     } catch (err) {
       vscode.window.showErrorMessage(
-        `${this.extensionName}: Error fetching coingecko`
+        `${this.extensionName}: Error fetching CoinGecko API`
       );
     }
     return [];
