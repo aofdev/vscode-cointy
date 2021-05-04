@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="vscode logo" src="resources/cryptocurrency-color-logo.svg" width="200px" />
+  <img alt="vscode logo" src="resources/cryptocurrency-logo-256x.png" width="200px" />
   <h1 align="center">Cointy</h1>
 </p>
 
