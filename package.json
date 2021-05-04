@@ -1,7 +1,7 @@
 {
   "name": "cointy",
   "displayName": "Cointy",
-  "description": "Welcome to Cointy, a Visual Studio Code extension for checks cryptocurrency prices as you code.",
+  "description": "Welcome to Cointy, a vs code extension for checks cryptocurrency prices as you code.",
   "version": "1.0.0",
   "icon": "resources/cryptocurrency-color-logo.png",
   "engines": {

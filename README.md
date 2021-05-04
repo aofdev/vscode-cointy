@@ -9,7 +9,7 @@
     <img src="demo-vscode-cointy.gif" alt="vscode-cointy">
 </p>
 
-Welcome to Cointy, a Visual Studio Code extension for checks cryptocurrency prices as you code.
+Welcome to Cointy, a vs code extension for checks cryptocurrency prices as you code.
 
 ## Features
 
