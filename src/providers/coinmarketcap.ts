@@ -12,9 +12,9 @@ export class CoinMarketCapProvider
     CoinItem | undefined | null | void
   > = this._onDidChangeTreeData.event;
 
+  readonly extensionID: string = "cointy";
+  readonly extensionName: string = "Cointy";
   private apiKey: string | undefined;
-  private extensionID: string = "cointy";
-  private extensionName: string = "Cointy";
 
   // get the apiKey definitions from the configuration
   constructor() {
@@ -93,12 +93,12 @@ export class CoinMarketCapProvider
       ),
       new CoinItem(
         `Volume(24h):`,
-        path.join(__filename, "..", "..", "..", "resources", "volume.svg"),
+        this.setIconPath("volume.svg"),
         formatter.formatCurrency(coin.quote.USD.volume_24h)
       ),
       new CoinItem(
         `Market Cap:`,
-        path.join(__filename, "..", "..", "..", "resources", "market.svg"),
+        this.setIconPath("market.svg"),
         formatter.formatCurrency(coin.quote.USD.market_cap)
       ),
     ];
@@ -106,8 +106,12 @@ export class CoinMarketCapProvider
 
   setIconPathPriceChange(price: number): string {
     return price >= 0
-      ? path.join(__filename, "..", "..", "..", "resources", "up.svg")
-      : path.join(__filename, "..", "..", "..", "resources", "down.svg");
+      ? this.setIconPath("up.svg")
+      : this.setIconPath("down.svg");
+  }
+
+  setIconPath(iconName: string): string {
+    return path.join(__filename, "..", "..", "..", "resources", iconName);
   }
 
   getTreeItem(element: CoinItem): vscode.TreeItem | Thenable<vscode.TreeItem> {

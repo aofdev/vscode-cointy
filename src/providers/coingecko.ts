@@ -11,7 +11,7 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
   readonly onDidChangeTreeData: vscode.Event<
     CoinItem | undefined | null | void
   > = this._onDidChangeTreeData.event;
-  private extensionName: string = "Cointy";
+  readonly extensionName: string = "Cointy";
 
   async getCoins(): Promise<CoinItem[]> {
     try {
@@ -55,12 +55,12 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
       ),
       new CoinItem(
         `Volume(24h):`,
-        path.join(__filename, "..", "..", "..", "resources", "volume.svg"),
+        this.setIconPath("volume.svg"),
         formatter.formatCurrency(coin.total_volume)
       ),
       new CoinItem(
         `Market Cap:`,
-        path.join(__filename, "..", "..", "..", "resources", "market.svg"),
+        this.setIconPath("market.svg"),
         formatter.formatCurrency(coin.market_cap)
       ),
     ];
@@ -68,8 +68,12 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
 
   setIconPathPriceChange(price: number): string {
     return price >= 0
-      ? path.join(__filename, "..", "..", "..", "resources", "up.svg")
-      : path.join(__filename, "..", "..", "..", "resources", "down.svg");
+      ? this.setIconPath("up.svg")
+      : this.setIconPath("down.svg");
+  }
+
+  setIconPath(iconName: string): string {
+    return path.join(__filename, "..", "..", "..", "resources", iconName);
   }
 
   getTreeItem(element: CoinItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
