@@ -6,7 +6,7 @@ on:
     - main
 
 jobs:
-  deploy:
+  release-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,7 +24,7 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: npm run semantic-release
 
       - name: Publish
         run: vsce publish -p $VSCE_TOKEN

@@ -2,7 +2,7 @@
   "name": "cointy",
   "displayName": "Cointy",
   "description": "A check for cryptocurrency prices as you code.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "aofdev",
   "icon": "resources/cryptocurrency-color-logo.png",
   "engines": {
@@ -12,9 +12,9 @@
     "Other"
   ],
   "repository": {
-		"type": "git",
-		"url": "https://github.com/aofdev/vscode-cointy"
-	},
+    "type": "git",
+    "url": "https://github.com/aofdev/vscode-cointy"
+  },
   "activationEvents": [
     "onView:coinGeckoTreeView",
     "onView:coinMarketCapTreeView"
@@ -96,7 +96,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@types/glob": "7.1.3",
@@ -110,6 +111,8 @@
     "glob": "7.1.6",
     "mocha": "8.3.2",
     "prettier": "2.2.1",
+    "semantic-release": "^17.4.2",
+    "semantic-release-vsce": "^3.3.0",
     "typescript": "4.2.4",
     "vscode-test": "1.5.2"
   },
@@ -118,18 +121,21 @@
     "gaxios": "^4.2.1"
   },
   "release": {
-		"branches": "main",
-		"verifyConditions": [
-			"@semantic-release/github"
-		],
-		"publish": [
-			"@semantic-release/github"
-		],
-		"success": [
-			"@semantic-release/github"
-		],
-		"fail": [
-			"@semantic-release/github"
-		]
-	}
+    "branches": "main",
+    "verifyConditions": [
+      "semantic-release-vsce",
+      "@semantic-release/github"
+    ],
+    "prepare": {
+      "path": "semantic-release-vsce",
+      "packageVsix": "cointy.vsix"
+    },
+    "publish": [
+      "semantic-release-vsce",
+      {
+        "path": "@semantic-release/github",
+        "assets": "cointy.vsix"
+      }
+    ]
+  }
 }
