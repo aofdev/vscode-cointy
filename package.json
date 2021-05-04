@@ -2,7 +2,7 @@
   "name": "cointy",
   "displayName": "Cointy",
   "description": "A check for cryptocurrency prices as you code.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "aofdev",
   "icon": "resources/cryptocurrency-color-logo.png",
   "engines": {
@@ -121,20 +121,19 @@
     "gaxios": "^4.2.1"
   },
   "release": {
-    "branches": "main",
     "verifyConditions": [
       "semantic-release-vsce",
       "@semantic-release/github"
     ],
     "prepare": {
       "path": "semantic-release-vsce",
-      "packageVsix": "cointy.vsix"
+      "packageVsix": true
     },
     "publish": [
       "semantic-release-vsce",
       {
         "path": "@semantic-release/github",
-        "assets": "cointy.vsix"
+        "assets": "*.vsix"
       }
     ]
   }
