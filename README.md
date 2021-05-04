@@ -2,14 +2,18 @@
   <img alt="vscode logo" src="resources/cryptocurrency-color-logo.svg" width="200px" />
   <h1 align="center">Cointy</h1>
 </p>
-  
-[![Linter](https://github.com/aofdev/vscode-cointy/workflows/lint/badge.svg)](ttps://github.com/aofdev/vscode-cointy/workflows/lint)
+
+<h3 align="center">Welcome to Cointy, a vs code extension for checks cryptocurrency prices as you code.</h3>
+
+<p align="center">
+  <a href="https://github.com/aofdev/vscode-cointy/workflows/lint">
+      <img src="https://github.com/aofdev/vscode-cointy/workflows/lint/badge.svg" alt="Linter">
+  </a>
+</p>
 
 <p align="center">
     <img src="demo-vscode-cointy.gif" alt="vscode-cointy">
 </p>
-
-Welcome to Cointy, a vs code extension for checks cryptocurrency prices as you code.
 
 ## Features
 
