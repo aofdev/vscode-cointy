@@ -2,7 +2,7 @@
   "name": "cointy",
   "displayName": "Cointy",
   "description": "A check for cryptocurrency prices as you code.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "aofdev",
   "icon": "resources/cryptocurrency-color-logo.png",
   "engines": {

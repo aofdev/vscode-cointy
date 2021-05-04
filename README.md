@@ -6,8 +6,14 @@
 <h3 align="center">Welcome to Cointy, a vs code extension for checks cryptocurrency prices as you code.</h3>
 
 <p align="center">
-  <a href="https://github.com/aofdev/vscode-cointy/workflows/lint">
+    <a href="https://github.com/aofdev/vscode-cointy/workflows/lint">
       <img src="https://github.com/aofdev/vscode-cointy/workflows/lint/badge.svg" alt="Linter">
+  </a>
+  <a href="https://github.com/aofdev/vscode-cointy/workflows/Release and Publish">
+      <img src="https://github.com/aofdev/vscode-cointy/workflows/Release and Publish/badge.svg" alt="Release and Publish">
+  </a>
+   <a href="https://github.com/semantic-release/semantic-release">
+      <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release">
   </a>
 </p>
 
