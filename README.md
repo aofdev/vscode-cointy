@@ -45,7 +45,7 @@ You can customize using CoinMarketCap API for the cointy extension settings.
 
 ## Contributing 📖
 
-This project welcomes contributions and suggestions. Please go through the [Contributing Guide](https://github.com/aofdev/vscode-cointy/blob/min/docs/contributing.md) in the new repository.
+This project welcomes contributions and suggestions. Please go through the [Contributing Guide](https://github.com/aofdev/vscode-cointy/blob/main/CONTRIBUTING.md) in the new repository.
 
 ## Icons
 
