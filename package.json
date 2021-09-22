@@ -111,7 +111,7 @@
     "glob": "7.1.7",
     "mocha": "9.0.2",
     "prettier": "2.3.2",
-    "semantic-release": "17.4.4",
+    "semantic-release": "17.4.7",
     "semantic-release-vsce": "3.4.1",
     "typescript": "4.3.5",
     "vscode-test": "1.5.2"
