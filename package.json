@@ -114,7 +114,7 @@
     "semantic-release": "17.4.4",
     "semantic-release-vsce": "3.4.1",
     "typescript": "4.3.5",
-    "vscode-test": "1.5.2"
+    "vscode-test": "1.6.1"
   },
   "dependencies": {
     "currency.js": "^2.0.3",
