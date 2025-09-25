@@ -5,6 +5,9 @@ import { CoinMarketCapProvider } from "./providers/coinmarketcap";
 const extensionName: string = "Cointy";
 const extensionID: string = "aofdev.cointy";
 
+let coinMarketCapDisposable: vscode.Disposable | undefined;
+let currentCoinMarketCapProvider: CoinMarketCapProvider | undefined;
+
 export function activate(context: vscode.ExtensionContext) {
   const coinGeckoProvider = new CoinGeckoProvider(extensionName);
 
@@ -24,6 +27,11 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(constructCoinMarketCapOnChange)
   );
+
+  // Register refresh command once, using current provider
+  vscode.commands.registerCommand("coinMarketCapTreeView.refreshEntry", () =>
+    currentCoinMarketCapProvider?.refresh()
+  );
 }
 
 export function constructCoinMarketCapOnChange() {
@@ -31,19 +39,22 @@ export function constructCoinMarketCapOnChange() {
     .getConfiguration("cointy")
     .get("coinmarketcap.apiKey");
 
+  // Dispose old provider if exists
+  if (coinMarketCapDisposable) {
+    coinMarketCapDisposable.dispose();
+  }
+
   const coinMarketCapProvider = new CoinMarketCapProvider(
     extensionID,
     extensionName,
     apiKey
   );
 
-  vscode.window.registerTreeDataProvider(
+  currentCoinMarketCapProvider = coinMarketCapProvider;
+
+  coinMarketCapDisposable = vscode.window.registerTreeDataProvider(
     "coinMarketCapTreeView",
     coinMarketCapProvider
-  );
-
-  vscode.commands.registerCommand("coinMarketCapTreeView.refreshEntry", () =>
-    coinMarketCapProvider.refresh()
   );
 }
 

@@ -3,6 +3,7 @@ import * as path from "path";
 import fetcher from "../utils/fetcher";
 import * as formatter from "../utils/formatter";
 import { ResponseCoinGeckoItem } from "../entities/response";
+import { CoinItem } from "../entities/CoinItem";
 
 export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
   private _onDidChangeTreeData: vscode.EventEmitter<
@@ -96,26 +97,5 @@ export class CoinGeckoProvider implements vscode.TreeDataProvider<CoinItem> {
 
   refresh(): void {
     this._onDidChangeTreeData.fire();
-  }
-}
-
-class CoinItem extends vscode.TreeItem {
-  children: CoinItem[] | undefined;
-
-  constructor(
-    label: string,
-    iconPath: vscode.Uri | string,
-    price: string,
-    children?: CoinItem[]
-  ) {
-    super(
-      label,
-      children === undefined
-        ? vscode.TreeItemCollapsibleState.None
-        : vscode.TreeItemCollapsibleState.Collapsed
-    );
-    this.children = children;
-    this.iconPath = iconPath;
-    this.description = price;
   }
 }

@@ -3,6 +3,8 @@ import * as path from "path";
 import fetcher from "../utils/fetcher";
 import * as formatter from "../utils/formatter";
 import { ResponseCoinMarketCapItem } from "../entities/response";
+import { CoinItem } from "../entities/CoinItem";
+
 export class CoinMarketCapProvider
   implements vscode.TreeDataProvider<CoinItem> {
   private _onDidChangeTreeData: vscode.EventEmitter<
@@ -22,22 +24,6 @@ export class CoinMarketCapProvider
   ) {
     this.extensionName = extensionName;
     this.apiKey = apiKey;
-
-    if (this.checkApiKey()) {
-      vscode.window
-        .showInformationMessage(
-          `${extensionName}: Please enter your CoinMarketCap API Key `,
-          "Add API Key"
-        )
-        .then((selection) => {
-          if (selection) {
-            vscode.commands.executeCommand(
-              "workbench.action.openSettings",
-              `@ext:${extensionID}`
-            );
-          }
-        });
-    }
   }
 
   async getCoins(): Promise<CoinItem[]> {
@@ -131,26 +117,5 @@ export class CoinMarketCapProvider
 
   refresh(): void {
     this._onDidChangeTreeData.fire();
-  }
-}
-
-class CoinItem extends vscode.TreeItem {
-  children: CoinItem[] | undefined;
-
-  constructor(
-    label: string,
-    iconPath: vscode.Uri | string,
-    price: string,
-    children?: CoinItem[]
-  ) {
-    super(
-      label,
-      children === undefined
-        ? vscode.TreeItemCollapsibleState.None
-        : vscode.TreeItemCollapsibleState.Collapsed
-    );
-    this.children = children;
-    this.iconPath = iconPath;
-    this.description = price;
   }
 }
